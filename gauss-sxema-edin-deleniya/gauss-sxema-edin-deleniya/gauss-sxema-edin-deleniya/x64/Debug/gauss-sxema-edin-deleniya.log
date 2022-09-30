@@ -1,0 +1,17 @@
+﻿  gauss-sxema-edin-deleniya.cpp
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(46,15): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(66,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(67,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(68,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(69,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(70,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(71,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(72,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(73,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(74,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(89,18): warning C4244: /=: преобразование "double" в "float", возможна потеря данных
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(138,19): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(144,21): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya\gauss-sxema-edin-deleniya.cpp(152,21): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  LINK : не найден или не выполнена сборка D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\x64\Debug\gauss-sxema-edin-deleniya.exe при последней инкрементной компоновке; выполняется полная компоновка
+  gauss-sxema-edin-deleniya.vcxproj -> D:\Загрузки\Gauss-method-single-division-method-B-part\gauss-sxema-edin-deleniya\x64\Debug\gauss-sxema-edin-deleniya.exe
