@@ -7,103 +7,155 @@
 #include <windows.h>
 using namespace std;
 
-int main()
-{
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
-	double mas[4][4];
+double** obrbyGauss(double(*mas)[3], int index) {
+	double table[3][4];
 	int i, j;
+	for (i = 0; i < 3; i++)
+		 for (j = 0; j < 3; j++)
+			 table[i][j] = mas[i][j];
+	for (i = 0; i < 3; i++)
+		table[i][3] = 0;
 
-	//input + confirm
-	printf("введите коэффицинты: \n");
-	for (i = 0; i < 3; i++) {
-		for (j = 0; j < 4; j++) {
-			cin >> mas[i][j];
+	table[index][3] = 1;
+//2
+	 double d = table[1][0]/table[0][0];
 
-		}
-	}
-	//determinanty, obratnaya matrica
-	double determinant=0;
-	determinant = 
-	  mas[0][0] * mas[1][1] * mas[2][2] 
-	+ mas[0][1] * mas[1][2] * mas[2][0]
-	+ mas[1][0] * mas[2][1] * mas[0][2] 
-	- mas[2][0] * mas[1][1] * mas[0][2] 
-	- mas[2][1] * mas[1][2] * mas[0][0] 
-	- mas[1][0] * mas[0][1] * mas[2][2];
-	cout<< "determinant = "<< determinant<< "\n\n";
-	//copy
-	double ac[3][3];
-	for (i=0; i<3; i++)
-	 for (j=0; j<3; j++)
-		ac[i][j]=mas[i][j];
-	
-	double invdet = 1 / determinant;
+	 for (j = 0; j < 4; j++)
+		 table[1][j] -= d * table[0][j];
+	//3-0 
+	 d = table[2][0] / table[0][0];
 
-	double minv[3][3]; // inverse of matrix mas
-	minv[0][0] = (mas[1][1] * mas[2][2] - mas[2][1] * mas[1][2]) * invdet;
-	minv[0][1] = (mas[0][2] * mas[2][1] - mas[0][1] * mas[2][2]) * invdet;
-	minv[0][2] = (mas[0][1] * mas[1][2] - mas[0][2] * mas[1][1]) * invdet;
-	minv[1][0] = (mas[1][2] * mas[2][0] - mas[1][0] * mas[2][2]) * invdet;
-	minv[1][1] = (mas[0][0] * mas[2][2] - mas[0][2] * mas[2][0]) * invdet;
-	minv[1][2] = (mas[1][0] * mas[0][2] - mas[0][0] * mas[1][2]) * invdet;
-	minv[2][0] = (mas[1][0] * mas[2][1] - mas[2][0] * mas[1][1]) * invdet;
-	minv[2][1] = (mas[2][0] * mas[0][1] - mas[0][0] * mas[2][1]) * invdet;
-	minv[2][2] = (mas[0][0] * mas[1][1] - mas[1][0] * mas[0][1]) * invdet;
-
-	cout << "\nobratnaya matrix\n\n";
-	for (i = 0; i < 3; i++) {
-		for (j = 0; j < 3; j++) {
-
+	 for (j = 0; j < 4; j++)
+		 table[2][j] -= d * table[0][j];
+		//3-1
+	 d = table[2][1] / table[1][1];
+	 for (j=1;j<4;j++)
+	 table[2][j] -= d * table[1][j];
+	 
 		
-			cout << minv[i][j] << ' ';
-		}
-		cout << '\n';
-	}
+		 double x1, x2, x3;
+		 x1 = table[2][3] / table[2][2];
+		 x2 = (table[1][3] - table[1][2] * x1) / table[1][1];
+		 x3 = (table[0][3] - table[0][2] * x1 - table[0][1] * x2) / table[0][0];
+		 double** row = new double*[3];
+		 for (i = 0; i < 3; i++)
+			 row[i] = new double[1];
+		 row[2][0] = x1;
+		 row[1][0] = x2;
+		 row[0][0] = x3;
+ 	return row;
+}
 
-	double **c;
-	c = new double* [3];
-	for (int i = 0; i < 3; i++)
-	{
-		c[i] = new double[3];
-		for (int j = 0; j < 3; j++)
-		{
-			c[i][j] = 0;
-			for (int k = 0; k < 3; k++)
-				c[i][j] += mas[i][k] * minv[k][j];
+void freeMasRew(double** table) {
+	if (table) {
+		for (int i = 0; i < 3; i++) {
+			 if (table[i]) { 
+				  delete[] table[i]; 
+			 } 
 		}
+		delete[] table;
 	}
+}
 
-	cout << "\nresult of multiply matrix * rev_matrix\n\n";
-	for (i = 0; i < 3; i++) {
-		for (j = 0; j < 3; j++) {
-		  if (c[i][j]<0.000'000'1)
-				  c[i][j]=0;
-			cout << c[i][j] << ' ';
+	
+
+int main() {
+		SetConsoleCP(1251);
+		SetConsoleOutputCP(1251);
+		double mas[3][4], prom;
+		int i, j;
+
+		//===================IN===========================================<<<<<<<<<<<<<<
+		printf("введите коэффицинты: \n");
+		for (i = 0; i < 3; i++) {
+				for (j = 0; j < 4; j++) {
+						cin >> mas[i][j];
+
+				}
 		}
-		cout << '\n';
-	}
-	//=============================================================
-			cout<<"\n\ndata confirmation: \n\n";
-			cout<<" / ";
-			for (j=0; j<3; j++)
-				cout << "+ (" << mas[0][j] << ")*x_" << j+1 << " ";
-			cout << "     " << mas[0][j]<< '\n';
 
-		 cout << "{  ";
-			for (j = 0; j < 3; j++)
+		//===================IN_end=======================================<<<<<<<<<<<<<<
+
+		//===================OUT==========================================<<<<<<<<<<<<<<
+		cout << "\n\ndata confirmation: \n\n";
+		cout << " / ";
+		for (j = 0; j < 3; j++)
+				cout << "+ (" << mas[0][j] << ")*x_" << j + 1 << " ";
+		cout << "     " << mas[0][j] << '\n';
+
+		cout << "{  ";
+		for (j = 0; j < 3; j++)
 				cout << "+ (" << mas[1][j] << ")*x_" << j + 1 << " ";
-			cout << "  =  " << mas[1][j] << '\n';
+		cout << "  =  " << mas[1][j] << '\n';
 
-			cout << ' ' << char(92) << ' ';
-			for (j = 0; j < 3; j++)
+		cout << ' ' << char(92) << ' ';
+		for (j = 0; j < 3; j++)
 				cout << "+ (" << mas[2][j] << ")*x_" << j + 1 << " ";
-			cout << "     " << mas[2][j] << '\n';
+		cout << "     " << mas[2][j] << '\n';
+		//===================OUT_end======================================<<<<<<<<<<<<<
+					//input end
+				 //перекомпановка матрицы. цель - треугольный вид
+					//нулевые к-ты вниз!
 
-			//input end
-		 //перекомпановка матрицы. цель - треугольный вид
-			//нулевые к-ты вниз!
-			double prom;
+		//==================DETERMINANT, REV_MATRIX=======================<<<<<<<<<<<<<
+		double determinant = 0;
+		double masc[3][3];
+
+		for (i = 0; i < 3; i++)
+				for (j = 0; j < 3; j++)
+						masc[i][j] = mas[i][j];
+
+
+
+		determinant = mas[0][0] * mas[1][1] * mas[2][2];
+		cout << "determinant = " << determinant << "\n\n";
+
+
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		double mas_obr[3][3];
+		for (i = 0; i < 3; i++)
+				for (j = 0; j < 3; j++)
+						mas_obr[i][j] = 0;
+
+		double** promt = new double* [3];
+		for (i = 0; i < 3; i++)
+				promt[i] = new double[1];
+		for (int index = 0; index < 3; index++) {
+				promt = obrbyGauss(masc, index);
+				for (int index1 = 0; index1 < 3; index1++) {
+
+						mas_obr[index1][index] = promt[index1][0];
+				}
+		}
+		int k;
+		double C[3][3];
+		//check edi
+		for (i = 0; i < 3; i++) {
+				for (j = 0; j < 3; j++) {
+						C[i][j] = 0;
+						for (k = 0; k < 3; k++)
+								C[i][j] += mas[i][k] * mas_obr[k][j];
+				}
+		}
+			//check on edi out
+
+
+
+
+		cout << "\nresult of multiply matrix * rev_matrix\n\n";
+			for (i = 0; i < 3; i++) {
+					for (j = 0; j < 3; j++) {
+							if (C[i][j] < 0.000'000'1) {
+									C[i][j] = 0;
+							}
+									
+							printf("%.2f ", C[i][j]);
+					}
+					printf("\n");
+			}
+		 //end check edi
+//==================END===========================================<<<<<<<<<<<<<
+			
 			if (mas[0][0] == 0) {
 				for (j=0; j<4;j++){
 				  prom=mas[2][j];
@@ -145,10 +197,20 @@ int main()
 				for (j = 1; j < 4; j++)
 					mas[2][j] = mas[0][j] * koef - mas[2][j];
 			}
+			//mas[1][0]=0;mas[2][0]=0;mas[2][1]=0;
+
+
+			/*
+			 1.32 -0.58  3.17
+				0.42 -0.45 -2.16
+				0.71  1.27  1.76
+				*/
 
 		
-			mas[1][0]=0;mas[2][0]=0;mas[2][1]=0;
 
+
+
+			//==========================
 			cout << " \n\n";
 			cout << " / ";
 			for (j = 0; j < 3; j++)
@@ -187,6 +249,8 @@ int main()
 		} else cout<< "ok, fine then";
 		  
 	cout<<"\n\n\n\n";
+	freeMasRew(promt);
+
 	system("pause");
 	return 0;
 }
